@@ -1,0 +1,22 @@
+-- Este script insere dados fictícios para que seu ETL tenha o que processar.
+-- Associados
+INSERT INTO associado (id, nome, sobrenome, idade, email) VALUES
+(1, 'MARIA', 'SILVA', 28, 'ana.silva@gmail.com'),
+(2, 'BRUNO', 'COSTA', 35, 'bruno.costa@gmail.com');
+
+-- Contas (Ambos associados à Maria, para testar a relação 1-N)
+INSERT INTO conta (id, id_associado, tipo_conta, data_criacao) VALUES
+(101, 1, 'Corrente', '2022-01-10T10:00:00'),
+(102, 1, 'Poupanca', '2022-01-10T10:05:00'),
+(103, 2, 'Corrente', '2021-11-20T15:30:00');
+
+-- Cartões
+INSERT INTO cartao (id, id_associado, num_cartao, nom_impresso, data_criacao) VALUES
+(1001, 1, '**** **** **** 1234', 'MARIA R SILVA', '2022-01-10T11:00:00'),
+(1002, 2, '**** **** **** 5678', 'BRUNO M COSTA', '2021-11-20T16:00:00');
+
+-- Movimentações
+INSERT INTO movimento (id, id_cartao, vlr_transacao, des_transacao, data_movimento) VALUES
+(1, 1001, 150.75, 'Supermercado', '2025-10-28T14:30:00'),
+(2, 1001, 80.00, 'Restaurante', '2025-10-29T12:15:00'),
+(3, 1002, 1200.00, 'Loja Eletronicos', '2025-10-29T18:45:00');
