@@ -1,0 +1,37 @@
+-- Cria as quatro tabelas (associado, conta, cartao, movimento) com base no diagrama e descrições-- Tabela de Associados
+CREATE TABLE associado (
+    id INT PRIMARY KEY,
+    nome VARCHAR(100),
+    sobrenome VARCHAR(100),
+    idade INT,
+    email VARCHAR(100)
+);
+
+-- Tabela de Contas
+CREATE TABLE conta (
+    id INT PRIMARY KEY,
+    id_associado INT,
+    tipo_conta VARCHAR(50),
+    data_criacao TIMESTAMP,
+    FOREIGN KEY (id_associado) REFERENCES associado(id)
+);
+
+-- Tabela de Cartões
+CREATE TABLE cartao (
+    id INT PRIMARY KEY,
+    id_associado INT,
+    num_cartao VARCHAR(30),
+    nom_impresso VARCHAR(100),
+    data_criacao TIMESTAMP,
+    FOREIGN KEY (id_associado) REFERENCES associado(id)
+);
+
+-- Tabela de Movimentações
+CREATE TABLE movimento (
+    id INT PRIMARY KEY,
+    id_cartao INT,
+    vlr_transacao DECIMAL(10, 2),
+    des_transacao VARCHAR(100),
+    data_movimento TIMESTAMP,
+    FOREIGN KEY (id_cartao) REFERENCES cartao(id)
+);
