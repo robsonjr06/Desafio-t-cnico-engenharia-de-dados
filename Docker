@@ -1,0 +1,13 @@
+# Com base em uma imagem base que já contém Spark e Python
+FROM bitnami/spark:3.4.1
+
+# Copia os requisitos e o script
+WORKDIR /app
+COPY requirements.txt .
+COPY etl_job.py .
+
+# Instala as dependências Python (o driver do PG)
+RUN pip install -r requirements.txt
+
+# Define o ponto de entrada (será sobrescrito pelo compose, mas é uma boa prática de mercado)
+ENTRYPOINT [ "spark-submit", "etl_job.py" ]
